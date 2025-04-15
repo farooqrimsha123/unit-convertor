@@ -56,21 +56,18 @@ st.markdown(
 )  
 
 #title and description
-st.markdown("<h1> Unit Convertor using Python and Stramlit </h1>", unsafe_allow_html=True)
-st.write("Easily convert between different unit of length, Weight, and temperature.")
+st.markdown("<h1> Universal Unit Convertor </h1>", unsafe_allow_html=True)
+st.write("Easily convert between different units of length, Weight, and temperature.")
 
 #sidebar menu
 conversion_type = st.sidebar.selectbox("Choose Conversion Type",["Length","Weight","Temperature"])
+
+#Input value
 value = st.number_input("Enter value", value=0.0, min_value=0.0, step=0.1)
+
+#Layout for unit selection
 col1,col2 = st.columns(2)
-", ["Celcius", "Fahrenheit", "Kelvin"])
-#converted functionimport streamlit as st
 
-st.title("Unit Converter")
-
-conversion_type = st.selectbox("Select Conversion Type", ["Length", "Weight", "Temperature"])
-
-col1, col2 = st.columns(2)  # Yeh zaroori hai
 
 if conversion_type == "Length":
     with col1:
@@ -84,9 +81,12 @@ elif conversion_type == "Weight":
         to_unit = st.selectbox("To", ["Grams", "Kilograms", "Miligrams", "Pounds", "Ounces"])
 elif conversion_type == "Temperature":
     with col1:
-        from_unit = st.selectbox("From", ["Celcius", "Fahrenheit", "Kelvin"])
+        from_unit = st.selectbox("From", ["Celsius", "Fahrenheit", "Kelvin"])
     with col2:
-        to_unit = st.selectbox("To
+        to_unit = st.selectbox("To", ["Celsius", "Fahrenheit", "Kelvin"])
+
+
+
 def length_convertor(value, from_unit, to_unit):
     length_units = {
         'Meters': 1; 'Kilometers':0.001, 'Centimeters': 100, 'Milimeters': 1000,
@@ -96,18 +96,21 @@ def length_convertor(value, from_unit, to_unit):
 
 def weight_convertor(value, from_unit, to_unit):
     weight_units = {
-        'Grams': 1000, 'Kilograms': 1, 'Miligrams': 1000000, 'Pounds': 2.2046, 'Ounces': 35.27
+        'Kilograms': 1, 'Grams': 1000, 'Miligrams': 1000000, 'Pounds': 2.2046, 'Ounces': 35.27
     }
     return (value / weight_units[from_unit]) * weight_units[to_unit]
 
 def temperature_convertor(value, from_unit, to_unit):
-    if from_unit == "Celcius":
+    if from_unit == "Celsius":
         return (value * 9/5 +32) if to_unit == "Fahrenheit" else (value + 273.15) if to_unit == "Kelvin" else value
     elif from_unit == "Fahrenheit":
-        return (value - 32) * 5/9 if to_unit == "Celcius" else (value -32) * 5/9 + 273.15 if to_unit == "Kelvin" else value
+        return (value - 32) * 5/9 if to_unit == "Celsius" else (value -32) * 5/9 + 273.15 if to_unit == "Kelvin" else value
     elif from_unit == "Kelvin":
-        return value - 273.15 if to_unit == "Celcius" else (value - 273.15) * 9/5 + 32 if to_unit == "Fahrenheit" else value
+        return value - 273.15 if to_unit == "Celsius" else (value - 273.15) * 9/5 + 32 if to_unit == "Fahrenheit" else value
     return value
+
+
+    
 #button for conversion
 if st.button("Convert"):
     if conversion_type == "Length":
