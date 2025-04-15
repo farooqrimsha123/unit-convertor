@@ -89,7 +89,7 @@ elif conversion_type == "Temperature":
 
 def length_convertor(value, from_unit, to_unit):
     length_units = {
-        'Meters': 1; 'Kilometers':0.001, 'Centimeters': 100, 'Milimeters': 1000,
+        'Meters': 1, 'Kilometers':0.001, 'Centimeters': 100, 'Milimeters': 1000,
         'Miles': 0.000621371, 'Yards': 1.09361,  'Feet': 3.28, 'Inches': 39.37
     }
     return (value / length_units[from_unit]) * length_units[to_unit]
